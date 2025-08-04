@@ -20,8 +20,7 @@ func InitializeDB() {
 		dsn string
 	)
 
-	if err = godotenv.Load();
-		err != nil {
+	if err = godotenv.Load(); err != nil {
 		panic("Error loading .env file")
 	}
 
@@ -75,6 +74,7 @@ func InitializeDB() {
 
 func GetDB() *gorm.DB {
 	if DB == nil {
+		InitializeDB()
 		log.Fatal("Database connection is not initialized. Call InitializeDB first.")
 	}
 	return DB
